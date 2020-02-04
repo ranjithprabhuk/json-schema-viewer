@@ -1,8 +1,9 @@
 import { Optional } from '@stoplight/types';
 import { JSONSchema4TypeName } from 'json-schema';
 import { isValidType } from './isValidType';
+import { SchemaKind } from '../types';
 
-function getTypeFromObject(obj: object): Optional<JSONSchema4TypeName> {
+function getTypeFromObject(obj: object): Optional<SchemaKind> {
   const size = Object.keys(obj).length;
 
   if (size > 1 || !('type' in obj)) {
@@ -12,7 +13,7 @@ function getTypeFromObject(obj: object): Optional<JSONSchema4TypeName> {
   }
 
   if ('type' in obj && isValidType((obj as { type: string }).type)) {
-    return (obj as { type: JSONSchema4TypeName }).type;
+    return (obj as { type: SchemaKind }).type;
   }
 
   return;
@@ -30,7 +31,7 @@ function flattenType(type: unknown) {
   return getTypeFromObject(type);
 }
 
-export const flattenTypes = (types: unknown): Optional<JSONSchema4TypeName | JSONSchema4TypeName[]> => {
+export const flattenTypes = (types: unknown): Optional<SchemaKind | SchemaKind[]> => {
   if (typeof types === 'string' && isValidType(types)) {
     return types;
   }

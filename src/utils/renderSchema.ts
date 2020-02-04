@@ -7,6 +7,7 @@ import { getPrimaryType } from './getPrimaryType';
 import { isCombiner } from './isCombiner';
 import { isCombinerNode, isRefNode } from './nodes';
 import { walk } from './walk';
+import { isArrayNodeWithItems } from './guards';
 
 export type WalkingOptions = {
   depth?: number;

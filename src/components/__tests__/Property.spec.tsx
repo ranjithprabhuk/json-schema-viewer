@@ -1,14 +1,14 @@
 import { shallow } from 'enzyme';
 import 'jest-enzyme';
 import * as React from 'react';
-import { SchemaNodeWithMeta } from '../../types';
+import { SchemaKind, SchemaNodeWithMeta } from '../../types';
 import { Property, Types } from '../shared';
 
 describe('Property component', () => {
   it('should render Types with proper type and subtype', () => {
     const node: SchemaNodeWithMeta = {
       id: '1',
-      type: 'array',
+      type: SchemaKind.Array,
       items: {
         type: 'string',
       },
@@ -28,7 +28,7 @@ describe('Property component', () => {
   it('should handle nullish items', () => {
     const node = {
       id: '1',
-      type: 'array',
+      type: SchemaKind.Array,
       items: null,
       annotations: {
         examples: {},

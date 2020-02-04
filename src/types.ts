@@ -1,6 +1,6 @@
 import { IRowRendererOptions, TreeListNode, TreeStore } from '@stoplight/tree-list';
 import { Dictionary, JsonPath } from '@stoplight/types';
-import { JSONSchema4, JSONSchema4TypeName } from 'json-schema';
+import { JSONSchema4 } from 'json-schema';
 import * as React from 'react';
 
 export enum SchemaKind {
@@ -25,14 +25,17 @@ export interface ICombinerNode {
   readonly combiner: JSONSchema4CombinerName;
   properties?: JSONSchema4[];
   annotations: Pick<JSONSchema4, JSONSchema4Annotations>;
-  readonly type?: JSONSchema4TypeName | JSONSchema4TypeName[];
 }
 
 export interface IBaseNode extends Pick<JSONSchema4, 'enum'> {
   id: string;
-  readonly type?: JSONSchema4TypeName | JSONSchema4TypeName[];
   annotations: Pick<JSONSchema4, JSONSchema4Annotations>;
   validations: Dictionary<unknown>;
+  type?: SchemaKind | SchemaKind[];
+}
+
+export interface IComplexNode extends IBaseNode {
+  type: SchemaKind[];
 }
 
 export interface IRefNode {
@@ -40,17 +43,17 @@ export interface IRefNode {
   $ref: string;
 }
 
-export interface IArrayNode extends IBaseNode, Pick<JSONSchema4, 'items' | 'additionalItems'> {}
+export interface IArrayNode extends IBaseNode, Pick<JSONSchema4, 'items' | 'additionalItems'> {
+  type: SchemaKind.Array;
+}
 
 export interface IObjectNode
   extends IBaseNode,
-    Pick<JSONSchema4, 'properties' | 'patternProperties' | 'additionalProperties'> {}
-
-export interface IObjectPropertyNode extends IBaseNode {
-  name: string;
+    Pick<JSONSchema4, 'properties' | 'patternProperties' | 'additionalProperties'> {
+  type: SchemaKind.Object;
 }
 
-export type SchemaNode = ICombinerNode | IBaseNode | IArrayNode | IObjectNode | IObjectPropertyNode | IRefNode;
+export type SchemaNode = ICombinerNode | IComplexNode | IArrayNode | IObjectNode | IRefNode;
 
 export interface ITreeNodeMeta {
   name?: string;
