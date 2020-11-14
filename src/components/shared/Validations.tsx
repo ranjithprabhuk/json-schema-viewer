@@ -1,32 +1,26 @@
 import { safeStringify } from '@stoplight/json';
 import { Dictionary } from '@stoplight/types';
 import { Popover } from '@stoplight/ui-kit';
-import { JSONSchema4 } from 'json-schema';
+import cn from 'classnames';
 import * as React from 'react';
 import { ViewModeContext } from '../JsonSchemaViewer';
-import { PropertyTypeColors } from './Types';
 
 export interface IValidations {
   required: boolean;
-  validations: (Dictionary<unknown> | {}) & {
-    deprecated?: boolean;
-    readOnly?: unknown;
-    writeOnly?: unknown;
-    format?: unknown;
-  };
+  validations: (Dictionary<unknown> | {}) & { deprecated?: boolean; readOnly?: unknown; writeOnly?: unknown };
 }
 
 export const Validations: React.FunctionComponent<IValidations> = ({
   required,
-  validations: { deprecated, readOnly, writeOnly, format, ...validations },
+  validations: { deprecated, readOnly, writeOnly, ...validations },
 }) => {
   const viewMode = React.useContext(ViewModeContext);
   const validationCount = Object.keys(validations).length;
 
   const requiredElem = (
-    <div>
-      {required && <span className="ml-2 text-orange-7 dark:text-orange-6">required</span>}
-      {validationCount ? <span className="ml-1 text-darken-7 dark:text-lighten-6">+{validationCount}</span> : null}
+    <div className={cn('ml-2', required ? 'font-medium' : 'text-darken-7 dark:text-lighten-6')}>
+      {required ? 'required' : 'optional'}
+      {validationCount ? `+${validationCount}` : ''}
     </div>
   );
 
@@ -90,17 +84,5 @@ export const Validations: React.FunctionComponent<IValidations> = ({
         requiredElem
       )}
     </>
-  );
-};
-
-export const Format: React.FunctionComponent<{ schema: JSONSchema4 }> = ({ schema }) => {
-  return (
-    <div
-      {...(typeof schema.type === 'string' && schema.type in PropertyTypeColors
-        ? { className: `ml-2 ${PropertyTypeColors[schema.type as string]}` }
-        : { className: 'ml-2' })}
-    >
-      {`<${schema.format}>`}
-    </div>
   );
 };

@@ -40,7 +40,7 @@ export const SchemaTree = observer<ISchemaTree>(props => {
         return customRowRenderer(node, rowOptions, treeStore);
       }
 
-      return <SchemaRow node={node} rowOptions={rowOptions} onGoToRef={onGoToRef} />;
+      return <SchemaRow treeNode={node} rowOptions={rowOptions} onGoToRef={onGoToRef} />;
     },
     [onGoToRef, customRowRenderer, treeStore],
   );

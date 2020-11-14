@@ -4,10 +4,10 @@ import cn from 'classnames';
 import { action } from 'mobx';
 import * as React from 'react';
 
+import { SchemaTreeRefDereferenceFn } from '@stoplight/json-schema-tree/resolver/types';
 import { JSONSchema4 } from 'json-schema';
-import { SchemaTree, SchemaTreeOptions, SchemaTreePopulateHandler, SchemaTreeRefDereferenceFn } from '../tree/tree';
+import { SchemaTree, SchemaTreeOptions } from '../tree/tree';
 import { GoToRefHandler, RowRenderer, ViewMode } from '../types';
-import { isSchemaViewerEmpty } from '../utils/isSchemaViewerEmpty';
 import { SchemaTree as SchemaTreeComponent } from './SchemaTree';
 
 export interface IJsonSchemaViewer {
@@ -24,7 +24,6 @@ export interface IJsonSchemaViewer {
   mergeAllOf?: boolean;
   FallbackComponent?: typeof FallbackComponent;
   rowRenderer?: RowRenderer;
-  onTreePopulate?: SchemaTreePopulateHandler;
   resolveRef?: SchemaTreeRefDereferenceFn;
   shouldResolveEagerly?: boolean;
   viewMode?: ViewMode;
@@ -54,7 +53,6 @@ export class JsonSchemaViewerComponent extends React.PureComponent<IJsonSchemaVi
       mergeAllOf: this.mergeAllOf,
       resolveRef: this.props.resolveRef,
       shouldResolveEagerly: !!this.props.shouldResolveEagerly,
-      onPopulate: this.props.onTreePopulate,
       viewMode: this.props.viewMode,
     };
   }
@@ -93,10 +91,6 @@ export class JsonSchemaViewerComponent extends React.PureComponent<IJsonSchemaVi
       this.tree.treeOptions.resolveRef = this.props.resolveRef;
     }
 
-    if (prevProps.onTreePopulate !== this.props.onTreePopulate) {
-      this.tree.treeOptions.onPopulate = this.props.onTreePopulate;
-    }
-
     if (
       this.treeStore.defaultExpandedDepth !== this.expandedDepth ||
       prevProps.schema !== this.props.schema ||
@@ -117,9 +111,9 @@ export class JsonSchemaViewerComponent extends React.PureComponent<IJsonSchemaVi
     } = this;
 
     // an empty array or object is still a valid response, schema is ONLY really empty when a combiner type has no information
-    if (isSchemaViewerEmpty(schema)) {
-      return <div>{emptyText}</div>;
-    }
+    // if (isSchemaViewerEmpty(schema)) {
+    //   return <div>{emptyText}</div>;
+    // }
 
     return (
       <div className={cn(className, 'JsonSchemaViewer flex flex-col relative')}>

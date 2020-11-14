@@ -1,1 +1,1 @@
-export * from './useMetadata';
+export * from './useSchemaNode';

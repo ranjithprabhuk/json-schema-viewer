@@ -1543,15 +1543,6 @@
     lodash "^4.17.4"
     read-pkg-up "^7.0.0"
 
-"@stoplight/json-schema-merge-allof@^0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@stoplight/json-schema-merge-allof/-/json-schema-merge-allof-0.7.2.tgz#a9f4d95b4a95e943afa567c695a1d4a2add9b74a"
-  integrity sha512-fVS5GqYBlxZfX1fA9+ULiny8VaCR3O62p3BHYd7+30rf378pVW6UPPydeB5AXs5U621LJKYdrGyndpOdTJ5dFA==
-  dependencies:
-    compute-lcm "^1.1.0"
-    json-schema-compare "^0.2.2"
-    lodash "^4.17.4"
-
 "@stoplight/json@^3.0", "@stoplight/json@^3.5.1":
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/@stoplight/json/-/json-3.5.1.tgz#afc6ffcbe2ada8f9b16680fd7885688cf9beec7e"
@@ -4559,25 +4550,6 @@ compose-function@3.0.3:
   integrity sha1-ntZ18TzFRQHTCVCkhv9qe6OrGF8=
   dependencies:
     arity-n "^1.0.4"
-
-compute-gcd@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/compute-gcd/-/compute-gcd-1.2.0.tgz#fc1ede5b65001e950226502f46543863e4fea10e"
-  integrity sha1-/B7eW2UAHpUCJlAvRlQ4Y+T+oQ4=
-  dependencies:
-    validate.io-array "^1.0.3"
-    validate.io-function "^1.0.2"
-    validate.io-integer-array "^1.0.0"
-
-compute-lcm@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/compute-lcm/-/compute-lcm-1.1.0.tgz#abd96d040b41b0a166f89944b5c8b7c511e21ad5"
-  integrity sha1-q9ltBAtBsKFm+JlEtci3xRHiGtU=
-  dependencies:
-    compute-gcd "^1.2.0"
-    validate.io-array "^1.0.3"
-    validate.io-function "^1.0.2"
-    validate.io-integer-array "^1.0.0"
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -8664,13 +8636,6 @@ json-parse-better-errors@^1.0.0, json-parse-better-errors@^1.0.1, json-parse-bet
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
   integrity sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
 
-json-schema-compare@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/json-schema-compare/-/json-schema-compare-0.2.2.tgz#dd601508335a90c7f4cfadb6b2e397225c908e56"
-  integrity sha512-c4WYmDKyJXhs7WWvAWm3uIYnfyWFoIp+JEoX34rctVvEkMYCPGhXtvmFFXiffBbxfZsvQ0RNnV5H7GvDF5HCqQ==
-  dependencies:
-    lodash "^4.17.4"
-
 json-schema-traverse@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz#69f6a87d9513ab8bb8fe63bdb0979c448e684660"
@@ -11314,11 +11279,6 @@ please-upgrade-node@^3.2.0:
   integrity sha512-gQR3WpIgNIKwBMVLkpMUeR3e1/E1y42bqDQZfql+kDeXd8COYfM8PQA4X6y7a8u9Ua9FHmsrrmirW2vHs45hWg==
   dependencies:
     semver-compare "^1.0.0"
-
-pluralize@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-8.0.0.tgz#1a6fa16a38d12a1901e0320fa017051c539ce3b1"
-  integrity sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==
 
 pn@^1.1.0:
   version "1.1.0"
@@ -14983,36 +14943,6 @@ validate-npm-package-name@^3.0.0, validate-npm-package-name@~3.0.0:
   integrity sha1-X6kS2B630MdK/BQN5zF/DKffQ34=
   dependencies:
     builtins "^1.0.3"
-
-validate.io-array@^1.0.3:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/validate.io-array/-/validate.io-array-1.0.6.tgz#5b5a2cafd8f8b85abb2f886ba153f2d93a27774d"
-  integrity sha1-W1osr9j4uFq7L4hroVPy2Tond00=
-
-validate.io-function@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/validate.io-function/-/validate.io-function-1.0.2.tgz#343a19802ed3b1968269c780e558e93411c0bad7"
-  integrity sha1-NDoZgC7TsZaCaceA5VjpNBHAutc=
-
-validate.io-integer-array@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/validate.io-integer-array/-/validate.io-integer-array-1.0.0.tgz#2cabde033293a6bcbe063feafe91eaf46b13a089"
-  integrity sha1-LKveAzKTpry+Bj/q/pHq9GsToIk=
-  dependencies:
-    validate.io-array "^1.0.3"
-    validate.io-integer "^1.0.4"
-
-validate.io-integer@^1.0.4:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/validate.io-integer/-/validate.io-integer-1.0.5.tgz#168496480b95be2247ec443f2233de4f89878068"
-  integrity sha1-FoSWSAuVviJH7EQ/IjPeT4mHgGg=
-  dependencies:
-    validate.io-number "^1.0.3"
-
-validate.io-number@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/validate.io-number/-/validate.io-number-1.0.3.tgz#f63ffeda248bf28a67a8d48e0e3b461a1665baf8"
-  integrity sha1-9j/+2iSL8opnqNSODjtGGhZluvg=
 
 vary@~1.1.2:
   version "1.1.2"

@@ -1,4 +1,4 @@
-import { TreeListParentNode, TreeState } from '@stoplight/tree-list';
+`import { TreeListParentNode, TreeState } from '@stoplight/tree-list';
 import { Popover } from '@stoplight/ui-kit';
 import { shallow } from 'enzyme';
 import 'jest-enzyme';

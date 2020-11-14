@@ -4,6 +4,9 @@ import { JSONSchema4TypeName } from 'json-schema';
 import * as React from 'react';
 
 import { JSONSchema4CombinerName, SchemaKind } from '../../types';
+import { useSchemaNode } from '../../hooks/useSchemaNode';
+import { PropertyTypeColors } from '../consts';
+import { RegularNode } from '@stoplight/json-schema-tree';
 
 /**
  * TYPE
@@ -50,7 +53,7 @@ function getPrintableType(type: IType['type'], subtype: IType['subtype'], title:
 export const Type: React.FunctionComponent<IType> = ({ className, title, type, subtype }) => {
   return (
     <span className={cn(className, PropertyTypeColors[type], 'truncate')}>
-      {getPrintableType(type, subtype, title)}
+      {type}
     </span>
   );
 };
@@ -61,24 +64,21 @@ Type.displayName = 'JsonSchemaViewer.Type';
  */
 interface ITypes {
   className?: string;
-  type: Optional<JSONSchema4TypeName | JSONSchema4TypeName[] | JSONSchema4CombinerName | '$ref'>;
-  subtype: Optional<JSONSchema4TypeName | JSONSchema4TypeName[] | '$ref'>;
-  title: Optional<string>;
 }
 
-export const Types: React.FunctionComponent<ITypes> = ({ className, title, type, subtype }) => {
-  if (type === void 0) return null;
+export const Types: React.FunctionComponent<ITypes> = ({ className }) => {
+  const schemaNode = useSchemaNode();
 
-  if (!Array.isArray(type)) {
-    return <Type className={className} type={type} subtype={subtype} title={title} />;
+  if (!(schemaNode instanceof RegularNode) || schemaNode.types === null) {
+    return null;
   }
 
   return (
     <div className={cn(className, 'truncate')}>
       <>
-        {type.map((name, i, { length }) => (
-          <React.Fragment key={i}>
-            <Type key={i} type={name} subtype={subtype} title={title} />
+        {schemaNode.types.map((type, i, { length }) => (
+          <React.Fragment key={type}>
+            <Type type={type} />
 
             {i < length - 1 && (
               <span key={`${i}-sep`} className="text-darken-7 dark:text-lighten-6">
@@ -93,21 +93,3 @@ export const Types: React.FunctionComponent<ITypes> = ({ className, title, type,
 };
 Types.displayName = 'JsonSchemaViewer.Types';
 
-/**
- * HELPERS
- */
-export const PropertyTypeColors: Dictionary<string, IType['type']> = {
-  object: 'text-blue-6 dark:text-blue-4',
-  any: 'text-blue-5',
-  array: 'text-green-6 dark:text-green-4',
-  allOf: 'text-orange-5',
-  anyOf: 'text-orange-5',
-  oneOf: 'text-orange-5',
-  null: 'text-orange-5',
-  integer: 'text-red-7 dark:text-red-6',
-  number: 'text-red-7 dark:text-red-6',
-  boolean: 'text-red-4',
-  binary: 'text-green-4',
-  string: 'text-green-7 dark:text-green-5',
-  $ref: 'text-purple-6 dark:text-purple-4',
-};
