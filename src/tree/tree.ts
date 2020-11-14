@@ -135,7 +135,7 @@ export class SchemaTree extends Tree {
   }
 
   public populateTreeFragment(parent: TreeListParentNode) {
-    const existingSchemaNode = this._reversedMap.get(parent)!;
+    const existingSchemaNode = this._reversedMap.get(parent)! as any; // todo: validate
     const artificialRoot = Tree.createArtificialRoot();
 
     try {

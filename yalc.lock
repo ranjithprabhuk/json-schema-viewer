@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "@stoplight/json-schema-tree": {
-      "signature": "db9c968f7dd25ea4ce686b05ac4c4bae",
+      "signature": "3b4dac7ace9b41e26ff28291232c0802",
       "file": true
     }
   }

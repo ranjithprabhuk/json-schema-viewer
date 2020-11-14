@@ -1,80 +1,90 @@
-import { Dictionary, Optional } from '@stoplight/types';
 import cn from 'classnames';
 import * as React from 'react';
 
-import {
-  ReferenceNode,
-  RegularNode,
-  SchemaCombinerName,
-  SchemaNode,
-  SchemaNodeKind,
-} from '@stoplight/json-schema-tree';
+import { ReferenceNode, RegularNode, SchemaNode, SchemaNodeKind } from '@stoplight/json-schema-tree';
+import { isParentNode } from '@stoplight/tree-list';
+import { useSchemaTreeListNode } from '../../hooks';
 import { useSchemaNode } from '../../hooks/useSchemaNode';
 import { SchemaTreeListNode } from '../../types';
-
-export interface IType {
-  type: keyof typeof PropertyTypeColors;
-  title: string;
-}
+import { PropertyTypeColors } from '../consts';
 
 function shouldRenderTitle(type: keyof typeof PropertyTypeColors): boolean {
   return type === SchemaNodeKind.Array || type === SchemaNodeKind.Object || type === '$ref';
 }
 
-function printArrayType(treeNode: SchemaTreeListNode, node: RegularNode): string {
-  // if it was flattend, we can safely do our sheniangs
-  if (!subtype) return SchemaKind.Array;
-
-  if (Array.isArray(subtype)) {
-    return `${SchemaKind.Array}[${subtype.join(',')}]`;
-  }
-
-  if (title && shouldRenderTitle(subtype)) {
-    return `${title}[]`;
-  }
-
-  if (subtype !== SchemaKind.Array && subtype !== '$ref') {
-    return `${SchemaKind.Array}[${subtype}]`;
-  }
-
-  return SchemaKind.Array;
-}
-
-function retrieve$ref(node: SchemaNode): Optional<string> {
-  if (isRefNode(node) && node.$ref !== null) {
-    return node.$ref;
-  }
-
-  if (hasRefItems(node) && node.items.$ref !== null) {
-    return `$ref(${node.items.$ref})`;
-  }
-
-  return;
-}
-
-function printTitle(node: SchemaNode, type: keyof typeof PropertyTypeColors): string {
-  if (!(node instanceof RegularNode) || !shouldRenderTitle(type)) {
-    return type;
-  }
-
-  if (node.primaryType !== SchemaNodeKind.Array) {
-    return node.title ?? type;
-  }
-
+function printArrayType(treeNode: SchemaTreeListNode, node: RegularNode): string | null {
   if (node.children === null || node.children.length === 0) {
+    return node.title;
+  }
+
+  if (node.children.length === 1) {
+    const firstChild = node.children[0];
+    if (firstChild instanceof ReferenceNode) {
+      return `$ref(${firstChild.value})[]`;
+    }
+
+    if (!(firstChild instanceof RegularNode)) return null;
+
+    if (firstChild.title !== null) {
+      return `${firstChild.title}[]`;
+    }
+
+    const val = firstChild.types?.join(',') ?? null;
+    return val === null ? val : `${SchemaNodeKind.Array}[${val}]`;
+  }
+
+  if (!isParentNode(treeNode)) {
+    const val =
+      node.children
+        ?.reduce<SchemaNodeKind[] | null>((mergedTypes, child) => {
+          if (mergedTypes === null) return null;
+
+          if (!(child instanceof RegularNode)) return null;
+
+          if (child.types !== null) {
+            for (const type of child.types) {
+              if (mergedTypes.includes(type)) continue;
+              mergedTypes.push(type);
+            }
+          }
+
+          return mergedTypes;
+        }, [])
+        ?.join(',') ?? null;
+    return val === null ? val : `${SchemaNodeKind.Array}[${val}]`;
+  }
+
+  return null;
+}
+
+function printTitle(
+  treeNode: SchemaTreeListNode,
+  schemaNode: SchemaNode,
+  type: keyof typeof PropertyTypeColors,
+): string {
+  if (!(schemaNode instanceof RegularNode) || !shouldRenderTitle(type)) {
     return type;
   }
 
-  return type; // printArrayType(node);
+  if (schemaNode.primaryType !== SchemaNodeKind.Array) {
+    return schemaNode.title ?? type;
+  }
+
+  if (schemaNode.children === null || schemaNode.children.length === 0) {
+    return type;
+  }
+
+  return printArrayType(treeNode, schemaNode) ?? type;
 }
 
 export const Types: React.FunctionComponent<{}> = () => {
   const schemaNode = useSchemaNode();
+  const treeNode = useSchemaTreeListNode();
 
   if (schemaNode instanceof ReferenceNode) {
     return (
       <div className="truncate">
-        <span className={cn(PropertyTypeColors.$ref, 'truncate')}>{schemaNode.value}</span>;
+        <span className={cn(PropertyTypeColors.$ref, 'truncate')}>{schemaNode.value ?? '$ref'}</span>
       </div>
     );
   }
@@ -88,7 +98,7 @@ export const Types: React.FunctionComponent<{}> = () => {
       <>
         {schemaNode.types.map((type, i, { length }) => (
           <React.Fragment key={type}>
-            <span className={cn(PropertyTypeColors[type], 'truncate')}>{printTitle(schemaNode, type)}</span>
+            <span className={cn(PropertyTypeColors[type], 'truncate')}>{printTitle(treeNode, schemaNode, type)}</span>
             {i < length - 1 && (
               <span key={`${i}-sep`} className="text-darken-7 dark:text-lighten-6">
                 {' or '}
@@ -101,18 +111,3 @@ export const Types: React.FunctionComponent<{}> = () => {
   );
 };
 Types.displayName = 'JsonSchemaViewer.Types';
-
-export const PropertyTypeColors: Dictionary<string, SchemaNodeKind | SchemaCombinerName | '$ref'> = {
-  [SchemaNodeKind.Object]: 'text-blue-6 dark:text-blue-4',
-  [SchemaNodeKind.Any]: 'text-blue-5',
-  [SchemaNodeKind.Array]: 'text-green-6 dark:text-green-4',
-  [SchemaCombinerName.AllOf]: 'text-orange-5',
-  [SchemaCombinerName.AnyOf]: 'text-orange-5',
-  [SchemaCombinerName.OneOf]: 'text-orange-5',
-  [SchemaNodeKind.Null]: 'text-orange-5',
-  [SchemaNodeKind.Integer]: 'text-red-7 dark:text-red-6',
-  [SchemaNodeKind.Number]: 'text-red-7 dark:text-red-6',
-  [SchemaNodeKind.Boolean]: 'text-red-4',
-  [SchemaNodeKind.String]: 'text-green-7 dark:text-green-5',
-  $ref: 'text-purple-6 dark:text-purple-4',
-};

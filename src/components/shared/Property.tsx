@@ -1,12 +1,12 @@
 import { ReferenceNode, SchemaNode } from '@stoplight/json-schema-tree';
 import { isParentNode } from '@stoplight/tree-list';
 import * as React from 'react';
+import { useSchemaTreeListNode } from '../../hooks';
 import { useSchemaNode } from '../../hooks/useSchemaNode';
-import { GoToRefHandler, SchemaTreeListNode } from '../../types';
+import { GoToRefHandler } from '../../types';
 import { Types } from './Types';
 
 export interface IProperty {
-  treeNode: SchemaTreeListNode;
   onGoToRef?: GoToRefHandler;
 }
 
@@ -19,8 +19,9 @@ function shouldShowPropertyName(schemaNode: SchemaNode) {
   );
 }
 
-export const Property: React.FunctionComponent<IProperty> = ({ treeNode, onGoToRef }) => {
+export const Property: React.FunctionComponent<IProperty> = ({ onGoToRef }) => {
   const schemaNode = useSchemaNode();
+  const treeNode = useSchemaTreeListNode();
   const { subpath } = schemaNode;
 
   const handleGoToRef = React.useCallback<React.MouseEventHandler>(() => {

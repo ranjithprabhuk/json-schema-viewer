@@ -1,5 +1,5 @@
-import { TreeListNode } from '@stoplight/tree-list';
 import { SchemaNode } from '@stoplight/json-schema-tree';
+import { TreeListNode } from '@stoplight/tree-list';
 import { SchemaTreeListNode } from '../types';
 
 export const metadataStore = new WeakMap<SchemaTreeListNode, SchemaNode>();

@@ -1,8 +1,8 @@
 import { RootNode } from '../nodes/RootNode';
 import type { SchemaTreeRefDereferenceFn } from '../resolver/types';
 import type { SchemaFragment } from '../types';
+import { Walker } from '../walker';
 import type { WalkerRefResolver } from '../walker/types';
-import { Walker } from '../walker/walk';
 export declare type SchemaTreeOptions = {
     mergeAllOf: boolean;
     refResolver: SchemaTreeRefDereferenceFn | null;

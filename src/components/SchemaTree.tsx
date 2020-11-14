@@ -1,4 +1,4 @@
-import { TreeList, TreeListEvents, TreeStore } from '@stoplight/tree-list';
+import { isParentNode, TreeList, TreeListEvents, TreeStore } from '@stoplight/tree-list';
 import { JSONSchema4 } from 'json-schema';
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
@@ -24,7 +24,7 @@ export const SchemaTree = observer<ISchemaTree>(props => {
 
   React.useEffect(() => {
     treeStore.events.on(TreeListEvents.NodeClick, (e, node) => {
-      if ('children' in node) {
+      if (isParentNode(node)) {
         treeStore.toggleExpand(node);
       }
     });

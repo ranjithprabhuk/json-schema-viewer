@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { SchemaNodeProviderContext } from '../components/SchemaNodeProvider';
 import { MirrorNode } from '@stoplight/json-schema-tree';
+import { SchemaNodeProviderContext } from '../providers/SchemaNodeProvider';
 
 export function useSchemaNode() {
   const node = useContext(SchemaNodeProviderContext);
