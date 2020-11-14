@@ -4,7 +4,7 @@ import * as React from 'react';
 
 export type SchemaTreeListNode = TreeListNode;
 
-export type GoToRefHandler = (path: string, node: ReferenceNode) => void;
+export type GoToRefHandler = (node: ReferenceNode) => void;
 
 export type RowRenderer = (
   node: TreeListNode,

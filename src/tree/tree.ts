@@ -3,11 +3,12 @@ import {
   RegularNode,
   RootNode,
   SchemaNode,
+  SchemaNodeKind,
   SchemaTree as JsonSchemaTree,
 } from '@stoplight/json-schema-tree';
 import { SchemaTreeRefDereferenceFn } from '@stoplight/json-schema-tree/resolver/types';
 import { isParentNode, Tree, TreeListParentNode, TreeState } from '@stoplight/tree-list';
-import { JsonPath, Optional } from '@stoplight/types';
+import { Optional } from '@stoplight/types';
 import { JSONSchema4 } from 'json-schema';
 import { SchemaTreeListNode, ViewMode } from '../types';
 import { metadataStore } from './metadata';
@@ -68,8 +69,6 @@ export class SchemaTree extends Tree {
         name: '',
       };
 
-      console.log(schemaNode);
-
       if (schemaNode instanceof RootNode || schemaNode instanceof RegularNode || schemaNode instanceof MirrorNode) {
         this._map.set(schemaNode, treeNode);
       }
@@ -79,9 +78,53 @@ export class SchemaTree extends Tree {
       treeNode.parent?.children.push(treeNode);
     });
 
+    this._schemaTree.walker.on('exitNode', schemaNode => {
+      this.flattenTreeFragment(schemaNode);
+    });
+
     this._schemaTree.populate();
     this.state.expanded = expanded;
     this.invalidate();
+  }
+
+  protected flattenTreeFragment(schemaNode: SchemaNode) {
+    if (!(schemaNode instanceof RegularNode) || schemaNode.primaryType !== SchemaNodeKind.Array || schemaNode.children === null || schemaNode.children.length === 0) {
+      return;
+    }
+
+    let canBeFlattened = false;
+
+    if (schemaNode.children.length === 1) {
+      canBeFlattened = schemaNode.children[0] instanceof RegularNode;
+    } else {
+      for (const child of schemaNode.children) {
+        if (!(child instanceof RegularNode)) return;
+        if (child.primaryType === SchemaNodeKind.Array || child.primaryType === SchemaNodeKind.Object) return;
+      }
+
+      canBeFlattened = true;
+    }
+
+    if (canBeFlattened) {
+      const treeNode = this._map.get(schemaNode) as TreeListParentNode // todo: throw
+
+      const { length } = treeNode.children;
+
+      for (const child of treeNode.children) {
+        if (!isParentNode(child)) continue;
+
+        for (const child2 of child.children) {
+          child2.parent = treeNode;
+          treeNode.children.push(child2);
+        }
+      }
+
+      treeNode.children.splice(0, length);
+      if (treeNode.children.length === 0) {
+        // @ts-ignore
+        delete treeNode.children;
+      }
+    }
   }
 
   protected static transitionTreeNodeIfNeeded(node: SchemaTreeListNode): TreeListParentNode {

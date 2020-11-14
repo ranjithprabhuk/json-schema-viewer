@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@stoplight/json-schema-tree": {
+      "signature": "db9c968f7dd25ea4ce686b05ac4c4bae",
+      "file": true
+    }
+  }
+}

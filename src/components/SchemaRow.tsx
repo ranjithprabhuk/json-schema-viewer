@@ -53,7 +53,7 @@ export const SchemaPropertyRow: typeof SchemaRow = ({ treeNode, onGoToRef, rowOp
       {schemaNode.subpath.length > 0 && isCombiner(schemaNode.subpath[0]) && <Divider kind={schemaNode.subpath[0]} />}
 
       <div className="flex-1 flex truncate">
-        <Property onGoToRef={onGoToRef} />
+        <Property treeNode={treeNode} onGoToRef={onGoToRef} />
         {typeof description === 'string' && description.length > 0 && <Description value={description} />}
       </div>
 

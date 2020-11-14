@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@stoplight/json": "^3.5.1",
+    "@stoplight/json-schema-tree": "file:.yalc/@stoplight/json-schema-tree",
     "@stoplight/react-error-boundary": "^1.0.0",
     "@stoplight/tree-list": "^5.0.3",
     "classnames": "^2.2.6",
