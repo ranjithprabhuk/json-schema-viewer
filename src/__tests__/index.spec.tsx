@@ -7,7 +7,7 @@ import { dumpDom } from './utils/dumpDom';
 
 describe('HTML Output', () => {
   test.each([
-    // 'ref/original.json',
+    'ref/original.json',
     'array-of-allofs.json',
     'array-of-objects.json',
     'array-of-refs.json',

@@ -1,7 +1,13 @@
 import cn from 'classnames';
 import * as React from 'react';
 
-import { ReferenceNode, RegularNode, SchemaNode, SchemaNodeKind } from '@stoplight/json-schema-tree';
+import {
+  ReferenceNode,
+  RegularNode,
+  SchemaCombinerName,
+  SchemaNode,
+  SchemaNodeKind,
+} from '@stoplight/json-schema-tree';
 import { isParentNode } from '@stoplight/tree-list';
 import { useSchemaTreeListNode } from '../../hooks';
 import { useSchemaNode } from '../../hooks/useSchemaNode';
@@ -77,6 +83,20 @@ function printTitle(
   return printArrayType(treeNode, schemaNode) ?? type;
 }
 
+function getTypes(schemaNode: RegularNode): Array<SchemaNodeKind | SchemaCombinerName> {
+  return [schemaNode.types, schemaNode.combiners].reduce<Array<SchemaNodeKind | SchemaCombinerName>>(
+    (values, value) => {
+      if (value === null) {
+        return values;
+      }
+
+      values.push(...value);
+      return values;
+    },
+    [],
+  );
+}
+
 export const Types: React.FunctionComponent<{}> = () => {
   const schemaNode = useSchemaNode();
   const treeNode = useSchemaTreeListNode();
@@ -89,14 +109,18 @@ export const Types: React.FunctionComponent<{}> = () => {
     );
   }
 
-  if (!(schemaNode instanceof RegularNode) || schemaNode.types === null) {
+  if (!(schemaNode instanceof RegularNode)) {
     return null;
   }
+
+  const types = getTypes(schemaNode);
+
+  if (types.length === 0) return null;
 
   return (
     <div className="truncate">
       <>
-        {schemaNode.types.map((type, i, { length }) => (
+        {types.map((type, i, { length }) => (
           <React.Fragment key={type}>
             <span className={cn(PropertyTypeColors[type], 'truncate')}>{printTitle(treeNode, schemaNode, type)}</span>
             {i < length - 1 && (

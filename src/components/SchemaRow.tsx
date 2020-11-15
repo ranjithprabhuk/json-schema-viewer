@@ -41,7 +41,10 @@ export const SchemaPropertyRow: React.FunctionComponent<Pick<ISchemaRow, 'rowOpt
   const description = schemaNode instanceof RegularNode ? schemaNode.annotations.description : null;
 
   const has$Ref = React.useMemo<boolean>(() => {
-    return schemaNode instanceof RegularNode && !!schemaNode.children?.some(node => node instanceof ReferenceNode);
+    return (
+      schemaNode instanceof ReferenceNode ||
+      (schemaNode instanceof RegularNode && !!schemaNode.children?.some(node => node instanceof ReferenceNode))
+    );
   }, [schemaNode]);
 
   return (

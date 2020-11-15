@@ -332,7 +332,7 @@ exports[`HTML Output given complex type that includes array and complex array su
     <div>
       <div style=\\"margin-left: 0px;\\">
         <div>
-          <span class=\\"text-blue-6 dark:text-blue-4\\">object</span>
+          <div><span class=\\"text-blue-6 dark:text-blue-4\\">object</span></div>
           <div class=\\"text-darken-7 dark:text-lighten-7\\">{1}</div>
         </div>
         <div></div>
@@ -388,7 +388,7 @@ exports[`HTML Output given multiple object and string type, should process prope
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>ids</div>
-          <span class=\\"text-green-6 dark:text-green-4\\">array[integer]</span>
+          <div><span class=\\"text-green-6 dark:text-green-4\\">array[integer]</span></div>
         </div>
         <div></div>
       </div>
@@ -746,7 +746,7 @@ exports[`HTML Output given read mode, should populate proper nodes 1`] = `
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>id</div>
-          <span class=\\"text-green-7 dark:text-green-5\\">string</span>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
         </div>
         <span class=\\"text-darken-7 dark:text-lighten-6\\">read-only</span>
         <div></div>
@@ -758,7 +758,7 @@ exports[`HTML Output given read mode, should populate proper nodes 1`] = `
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>description</div>
-          <span class=\\"text-green-7 dark:text-green-5\\">string</span>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
         </div>
         <span class=\\"text-darken-7 dark:text-lighten-6\\">write-only</span>
         <div></div>
@@ -791,7 +791,7 @@ exports[`HTML Output given standalone mode, should populate proper nodes 1`] = `
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>id</div>
-          <span class=\\"text-green-7 dark:text-green-5\\">string</span>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
         </div>
         <span class=\\"text-darken-7 dark:text-lighten-6\\">read-only</span>
         <div></div>
@@ -803,7 +803,7 @@ exports[`HTML Output given standalone mode, should populate proper nodes 1`] = `
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>description</div>
-          <span class=\\"text-green-7 dark:text-green-5\\">string</span>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
         </div>
         <span class=\\"text-darken-7 dark:text-lighten-6\\">write-only</span>
         <div></div>
@@ -893,7 +893,7 @@ exports[`HTML Output given write mode, should populate proper nodes 1`] = `
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>id</div>
-          <span class=\\"text-green-7 dark:text-green-5\\">string</span>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
         </div>
         <span class=\\"text-darken-7 dark:text-lighten-6\\">read-only</span>
         <div></div>
@@ -905,7 +905,7 @@ exports[`HTML Output given write mode, should populate proper nodes 1`] = `
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>description</div>
-          <span class=\\"text-green-7 dark:text-green-5\\">string</span>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
         </div>
         <span class=\\"text-darken-7 dark:text-lighten-6\\">write-only</span>
         <div></div>
@@ -975,7 +975,7 @@ exports[`HTML Output should match array-of-objects.json 1`] = `
     <div>
       <div style=\\"margin-left: 0px;\\">
         <div>
-          <span class=\\"text-blue-6 dark:text-blue-4\\">object</span>
+          <div><span class=\\"text-blue-6 dark:text-blue-4\\">object</span></div>
           <div class=\\"text-darken-7 dark:text-lighten-7\\">{1}</div>
         </div>
         <span class=\\"bp3-popover-wrapper\\">
@@ -1006,7 +1006,7 @@ exports[`HTML Output should match array-of-objects.json 1`] = `
       <div style=\\"margin-left: 40px;\\">
         <div>
           <div>ArrayObjectProperty</div>
-          <span class=\\"text-green-7 dark:text-green-5\\">string</span>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
         </div>
         <div></div>
       </div>
@@ -1039,7 +1039,7 @@ exports[`HTML Output should match combiner-schema.json 1`] = `
     <div>
       <div style=\\"margin-left: 0px;\\">
         <div>
-          <span class=\\"text-blue-6 dark:text-blue-4\\">Todo Full</span>
+          <div><span class=\\"text-blue-6 dark:text-blue-4\\">Todo Full</span></div>
           <div class=\\"text-darken-7 dark:text-lighten-7\\">{5}</div>
         </div>
         <div></div>
@@ -1051,7 +1051,7 @@ exports[`HTML Output should match combiner-schema.json 1`] = `
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>test</div>
-          <span class=\\"text-green-7 dark:text-green-5\\">string</span>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
         </div>
         <div></div>
       </div>
@@ -1062,7 +1062,7 @@ exports[`HTML Output should match combiner-schema.json 1`] = `
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>id</div>
-          <span class=\\"text-red-7 dark:text-red-6\\">integer</span>
+          <div><span class=\\"text-red-7 dark:text-red-6\\">integer</span></div>
         </div>
         <span class=\\"bp3-popover-wrapper\\">
           <span class=\\"bp3-popover-target\\">
@@ -1085,7 +1085,7 @@ exports[`HTML Output should match combiner-schema.json 1`] = `
             <span class=\\"text-darken-7 dark:text-lighten-6\\">or</span>
             <span class=\\"text-orange-5\\">null</span>
           </div>
-          <div>&lt;date-time&gt;</div>
+          <span>&lt;date-time&gt;</span>
         </div>
         <div></div>
       </div>
@@ -1096,8 +1096,8 @@ exports[`HTML Output should match combiner-schema.json 1`] = `
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>created_at</div>
-          <span class=\\"text-green-7 dark:text-green-5\\">string</span>
-          <div class=\\"text-green-7 dark:text-green-5\\">&lt;date-time&gt;</div>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
+          <span class=\\"text-green-7 dark:text-green-5\\">&lt;date-time&gt;</span>
         </div>
         <div></div>
       </div>
@@ -1108,8 +1108,8 @@ exports[`HTML Output should match combiner-schema.json 1`] = `
       <div style=\\"margin-left: 20px;\\">
         <div>
           <div>updated_at</div>
-          <span class=\\"text-green-7 dark:text-green-5\\">string</span>
-          <div class=\\"text-green-7 dark:text-green-5\\">&lt;date-time&gt;</div>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
+          <span class=\\"text-green-7 dark:text-green-5\\">&lt;date-time&gt;</span>
         </div>
         <div></div>
       </div>
@@ -1750,7 +1750,9 @@ exports[`HTML Output should match nullish-ref.schema.json 1`] = `
         <span class=\\"hover:bg-darken-3\\" role=\\"button\\" style=\\"width: 20px; height: 20px; position: relative;\\">
           <span icon=\\"caret-right\\"></span>
         </span>
-        <div><span class=\\"text-purple-6 dark:text-purple-4\\">$ref</span></div>
+        <div>
+          <div><span class=\\"text-purple-6 dark:text-purple-4\\">$ref</span></div>
+        </div>
         <div></div>
       </div>
     </div>
@@ -1765,7 +1767,7 @@ exports[`HTML Output should match ref/original.json 1`] = `
     <div>
       <div style=\\"margin-left: 0px;\\">
         <div>
-          <span class=\\"text-blue-6 dark:text-blue-4\\">object</span>
+          <div><span class=\\"text-blue-6 dark:text-blue-4\\">object</span></div>
           <div class=\\"text-darken-7 dark:text-lighten-7\\">{2}</div>
         </div>
         <div></div>
@@ -1776,11 +1778,12 @@ exports[`HTML Output should match ref/original.json 1`] = `
     <div>
       <div style=\\"margin-left: 20px;\\">
         <span class=\\"hover:bg-darken-3\\" role=\\"button\\" style=\\"width: 20px; height: 20px; left: -23.5px;\\">
-          <span icon=\\"caret-right\\"></span>
+          <span icon=\\"caret-down\\"></span>
         </span>
         <div>
           <div>billing_address</div>
-          <span class=\\"text-purple-6 dark:text-purple-4\\">#/definitions/address</span>
+          <div><span class=\\"text-blue-6 dark:text-blue-4\\">object</span></div>
+          <div class=\\"text-darken-7 dark:text-lighten-7\\">{3}</div>
         </div>
         <div></div>
       </div>
@@ -1788,15 +1791,82 @@ exports[`HTML Output should match ref/original.json 1`] = `
   </div>
   <div>
     <div>
+      <div style=\\"margin-left: 40px;\\">
+        <div>
+          <div>street_address</div>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
+        </div>
+        <div><span class=\\"text-orange-7 dark:text-orange-6\\">required</span></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div style=\\"margin-left: 40px;\\">
+        <div>
+          <div>city</div>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
+        </div>
+        <div><span class=\\"text-orange-7 dark:text-orange-6\\">required</span></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div style=\\"margin-left: 40px;\\">
+        <div>
+          <div>state</div>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
+        </div>
+        <div><span class=\\"text-orange-7 dark:text-orange-6\\">required</span></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
       <div style=\\"margin-left: 20px;\\">
         <span class=\\"hover:bg-darken-3\\" role=\\"button\\" style=\\"width: 20px; height: 20px; left: -23.5px;\\">
-          <span icon=\\"caret-right\\"></span>
+          <span icon=\\"caret-down\\"></span>
         </span>
         <div>
           <div>shipping_address</div>
-          <span class=\\"text-purple-6 dark:text-purple-4\\">#/definitions/address</span>
+          <div><span class=\\"text-blue-6 dark:text-blue-4\\">object</span></div>
+          <div class=\\"text-darken-7 dark:text-lighten-7\\">{3}</div>
         </div>
         <div></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div style=\\"margin-left: 40px;\\">
+        <div>
+          <div>street_address</div>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
+        </div>
+        <div><span class=\\"text-orange-7 dark:text-orange-6\\">required</span></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div style=\\"margin-left: 40px;\\">
+        <div>
+          <div>city</div>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
+        </div>
+        <div><span class=\\"text-orange-7 dark:text-orange-6\\">required</span></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div style=\\"margin-left: 40px;\\">
+        <div>
+          <div>state</div>
+          <div><span class=\\"text-green-7 dark:text-green-5\\">string</span></div>
+        </div>
+        <div><span class=\\"text-orange-7 dark:text-orange-6\\">required</span></div>
       </div>
     </div>
   </div>
